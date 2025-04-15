@@ -47,7 +47,7 @@
     <mesh name="link6_c" file="link6.stl"/>
     <mesh name="link7_c" file="link7.stl"/>
     <!-- Added scale attribute for shovel collision mesh; adjust scale as needed -->
-    <mesh name="shovel_c" file="shovel_collision.stl" scale="0.0015 0.0015 0.0015"/>
+    <mesh name="shovel_c" file="LW_shovel_collision_m.stl"/>
     
     <!-- Visual meshes -->
     <mesh file="link0_0.obj"/>
@@ -99,8 +99,8 @@
     <mesh file="link7_5.obj"/>
     <mesh file="link7_6.obj"/>
     <mesh file="link7_7.obj"/>
-    <!-- scale attribute for shovel visual mesh; adjust scale as needed -->
-    <mesh name="shovel_v" file="shovel_visual.stl" scale="0.0015 0.0015 0.0015"/>
+    <!-- scale attribute for shovel visual mesh; adjust scale as needed, but why the mesh name -->
+    <mesh name="shovel_v" file="LW_shovel_visual_m.stl"/>
   </asset>
 
   <worldbody>
@@ -196,7 +196,13 @@
                     <geom mesh="link7_7" material="white" class="panda/visual"/>
                     <geom mesh="link7_c" class="panda/collision"/>
                     <!-- Modified the shovel attachment: adjust pos and quat values as needed for fine-tuning -->
-                    <body name="shovel" pos="0.05 0 -0.02" quat="0.3826834 0 0 0.7238795">
+                    
+                    <body name="shovel" pos="-0.045 -0.08 0.22" quat="0 0.96 0.29 0"> 
+                                      
+                    <!--Use this site for messing with quaternion visualization: https://eater.net/quaternions/video/intro-->
+                    
+                    <!--body name="shovel" pos="-0.045 -0.08 0.22" quat="0 0.5 0.866 0"-->
+                    <!--body name="shovel" pos="-0.045 -0.08 0.22" axisangle=" 0 0 90"-->
                       <inertial mass="0.5" pos="0 0 0.05" diaginertia="0.002 0.002 0.001"/>
                       <geom mesh="shovel_v" material="dark_grey" class="shovel/visual"/>
                       <geom mesh="shovel_c" class="shovel/collision"/>
