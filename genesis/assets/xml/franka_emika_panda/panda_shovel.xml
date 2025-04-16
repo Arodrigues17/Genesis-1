@@ -198,7 +198,7 @@
                     <!-- Modified the shovel attachment: adjust pos and quat values as needed for fine-tuning -->
                     
                     <body name="shovel" pos="-0.1 0.0 0.22" quat="0 0.92 0.39 0">
-                      <joint name="shovel_joint" type="hinge" axis="0 0 1" range="0 0" armature="0.001" damping="1000" stiffness="1000"/>
+                      <!-- No joint definition here - this will make it welded by default -->
                       <inertial mass="0.5" pos="0 0 0.05" diaginertia="0.002 0.002 0.001"/>
                       <geom mesh="shovel_v" material="dark_grey" class="shovel/visual"/>
                       <geom mesh="shovel_c" class="shovel/collision"/>
@@ -227,6 +227,6 @@
   </actuator>
 
   <keyframe>
-    <key name="home" qpos="0 0 0 -1.57079 0 1.57079 -0.7853 0" ctrl="0 0 0 -1.57079 0 1.57079 -0.7853 0"/>
+    <key name="home" qpos="0 0 0 -1.57079 0 1.57079 -0.7853" ctrl="0 0 0 -1.57079 0 1.57079 -0.7853"/>
   </keyframe>
 </mujoco>
