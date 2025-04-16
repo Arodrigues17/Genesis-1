@@ -72,25 +72,25 @@ def execute_digging_motion_with_predefined_positions(franka, scene):
     # These would need to be adjusted based on your robot's configuration
     digging_joint_positions = [
         # Position above digging spot
-        np.array([0.0, -0.3, 0.0, -2.0, 0.0, 2.0, 0.8]),
+        np.array([0.0, -0.3, 0.0, -2.0, 0.0, 2.0, 0.8+ (np.pi/2)]),
         
         # Insert shovel into material
-        np.array([0.0, 0.0, 0.0, -2.2, 0.0, 2.2, 0.8]),
+        np.array([0.0, 0.0, 0.0, -2.2, 0.0, 2.2, 0.8+ (np.pi/2)]),
         
         # Scoop motion (tilt the shovel)
-        np.array([0.0, 0.0, 0.0, -2.2, 0.0, 1.8, 0.5]),
+        np.array([0.0, 0.0, 0.0, -2.2, 0.0, 1.8, 0.5+ (np.pi/2)]),
         
         # Lift filled shovel
-        np.array([0.0, -0.5, 0.0, -1.8, 0.0, 1.8, 0.5]),
+        np.array([0.0, -0.5, 0.0, -1.8, 0.0, 1.8, 0.5+ (np.pi/2)]),
         
         # Move to dumping location
-        np.array([1.0, -0.5, 0.0, -1.8, 0.0, 1.8, 0.5]),
+        np.array([1.0, -0.5, 0.0, -1.8, 0.0, 1.8, 0.5+ (np.pi/2)]),
         
         # Empty the shovel (tilt in opposite direction)
-        np.array([1.0, -0.5, 0.0, -1.8, 0.0, 2.5, 0.8]),
+        np.array([1.0, -0.5, 0.0, -1.8, 0.0, 2.5, 0.8+ (np.pi/2)]),
         
         # Return to starting position
-        np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+        np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0+ (np.pi/2)])
     ]
     
     # Execute digging sequence
