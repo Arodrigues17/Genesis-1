@@ -2,7 +2,7 @@ import genesis as gs
 import numpy as np
 gs.init(seed=0, precision="32", backend=gs.cuda)
 
-offset = .1
+offset = -.2
 
 scene = gs.Scene(
     show_viewer = True,
@@ -45,8 +45,8 @@ franka = scene.add_entity(
 sand = scene.add_entity(
     material=gs.materials.MPM.Sand(),
     morph=gs.morphs.Box(
-        pos=(0.65, 0.0, 0.6),
-        size=(0.1, 0.1, 0.1),
+        pos=(0.4, 0.0, 0.3),
+        size=(0.3, 0.3, 0.3),
     ),
     surface=gs.surfaces.Rough(
         color=(1.0, 0.9, 0.6, 1.0),
@@ -57,7 +57,7 @@ sand = scene.add_entity(
 bowl = scene.add_entity(
     morph=gs.morphs.Mesh(
         file="/home/anthony/dev/Genesis-sim/sand_pit/soup_bowl.obj",
-        pos=(0.65, 0.0, 0.0),
+        pos=(0.4, 0.0, 0.0),
         scale=0.03,
         fixed=True,
         convexify=False,
@@ -110,25 +110,25 @@ def execute_digging_motion_with_predefined_positions(franka, scene):
     # These would need to be adjusted based on your robot's configuration
     digging_joint_positions = [
         # Position above digging spot
-        np.array([0.0, -0.3, 0.0, -2.0, 0.0, 2.0, 0.8]),
+        np.array([0.0, -0.3, 0.0, -2.0, 0.0, 2.0, 0.8+offset]),
         
         # Insert shovel into material
-        np.array([0.0, 0.0, 0.0, -2.2, 0.0, 2.2, 0.8 + offset]),
+        np.array([0.0, 0.0, 0.0, -2.2, 0.0, 2.2, 0.8+offset]),
         
         # Scoop motion (tilt the shovel)
-        np.array([0.0, 0.0, 0.0, -2.2, 0.0, 1.8, 0.5 + offset]),
+        np.array([0.0, 0.0, 0.0, -2.2, 0.0, 1.8, 0.5+offset]),
         
         # Lift filled shovel
-        np.array([0.0, -0.5, 0.0, -1.8, 0.0, 1.8, 0.5 + offset]),
+        np.array([0.0, -0.5, 0.0, -1.8, 0.0, 1.8, 0.5+offset]),
         
         # Move to dumping location
-        np.array([1.0, -0.5, 0.0, -1.8, 0.0, 1.8, 0.5 + offset]),
+        np.array([1.0, -0.5, 0.0, -1.8, 0.0, 1.8, 0.5+offset]),
         
         # Empty the shovel (tilt in opposite direction)
-        np.array([1.0, -0.5, 0.0, -1.8, 0.0, 2.5, 0.8 + offset]),
+        np.array([1.0, -0.5, 0.0, -1.8, 0.0, 2.5, 0.8+offset]),
         
         # Return to starting position
-        np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 + offset])
+        np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0+offset])
     ]
     
     # Execute digging sequence

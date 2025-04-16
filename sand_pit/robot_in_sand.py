@@ -1,7 +1,6 @@
 import argparse
 import numpy as np
 
-
 import genesis as gs
 
 parser = argparse.ArgumentParser()
@@ -37,8 +36,8 @@ plane = scene.add_entity(
 sand = scene.add_entity(
     material=gs.materials.MPM.Sand(),
     morph=gs.morphs.Box(
-        pos=(0.65, 0.0, 0.6),
-        size=(0.4, 0.4, 0.2),
+        pos=(0.5, 0.0, 0.6),
+        size=(0.2, 0.2, 0.2),
     ),
     surface=gs.surfaces.Rough(
         color=(1.0, 0.9, 0.6, 1.0),
@@ -48,7 +47,7 @@ sand = scene.add_entity(
 bowl = scene.add_entity(
     morph=gs.morphs.Mesh(
         file="/home/anthony/dev/Genesis/sand_pit/soup_bowl.obj",
-        pos=(0.65, 0.0, 0.0),
+        pos=(0.5, 0.0, 0.0),
         scale=0.03,
         fixed=True,
         convexify=False,
