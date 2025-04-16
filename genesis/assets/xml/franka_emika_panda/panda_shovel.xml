@@ -198,10 +198,9 @@
                     <!-- Modified the shovel attachment: adjust pos and quat values as needed for fine-tuning -->
                     
                     <body name="shovel" pos="-0.1 0.0 0.22" quat="0 0.92 0.39 0">
-                      <!-- No joint definition here - this will make it welded by default -->
-                      <inertial mass="0.5" pos="0 0 0.05" diaginertia="0.002 0.002 0.001"/>
-                      <geom mesh="shovel_v" material="dark_grey" class="shovel/visual"/>
-                      <geom mesh="shovel_c" class="shovel/collision"/>
+                        <inertial mass="0.5" pos="0 0 0.05" diaginertia="0.002 0.002 0.001"/>
+                        <geom mesh="shovel_v" material="dark_grey" class="shovel/visual"/>
+                        <geom mesh="shovel_c" class="shovel/collision"/>
                     </body>
                   </body>
                 </body>

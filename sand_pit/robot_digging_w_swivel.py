@@ -30,10 +30,10 @@ franka = scene.add_entity(
 )
 
 cam = scene.add_camera(
-    res    = (1280, 720),
+    res    = (2560, 1440),
     pos    = (1.5, 1.5, 0.75),
     lookat = (0, 0, 0.5),
-    fov    = 30,
+    fov    = 60,
     GUI    = False,
 )
 
