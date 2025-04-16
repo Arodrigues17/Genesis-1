@@ -5,7 +5,17 @@ gs.init(seed=0, precision="32", backend=gs.cuda)
 offset = .1
 
 scene = gs.Scene(
-    show_viewer = False,
+    show_viewer = True,
+
+    sim_options=gs.options.SimOptions(
+    dt=2e-3,
+    substeps=10,
+    ),
+    mpm_options=gs.options.MPMOptions(
+        lower_bound=(0.0, -.5, -0.1),
+        upper_bound=(1.0, 0.5, 1.0),
+    ),
+
     viewer_options = gs.options.ViewerOptions(
         res           = (1280, 960),
         camera_pos    = (1.5, 0.0, 1.5),
@@ -20,6 +30,7 @@ scene = gs.Scene(
         show_cameras     = False,
         plane_reflection = False,
         ambient_light    = (0.3, 0.3, 0.3),
+        visualize_mpm_boundary=True,
     ),
     renderer=gs.renderers.Rasterizer(),
 )
@@ -31,11 +42,36 @@ franka = scene.add_entity(
     gs.morphs.MJCF(file='/home/anthony/dev/Genesis-sim/genesis/assets/xml/franka_emika_panda/panda_shovel.xml'),
 )
 
+sand = scene.add_entity(
+    material=gs.materials.MPM.Sand(),
+    morph=gs.morphs.Box(
+        pos=(0.65, 0.0, 0.6),
+        size=(0.1, 0.1, 0.1),
+    ),
+    surface=gs.surfaces.Rough(
+        color=(1.0, 0.9, 0.6, 1.0),
+        vis_mode="particle",
+    ),
+)
+
+bowl = scene.add_entity(
+    morph=gs.morphs.Mesh(
+        file="/home/anthony/dev/Genesis-sim/sand_pit/soup_bowl.obj",
+        pos=(0.65, 0.0, 0.0),
+        scale=0.03,
+        fixed=True,
+        convexify=False,
+    ),
+    surface=gs.surfaces.Plastic(
+        color=(0.9, 0.8, 0.2, 1.0),
+        vis_mode="collision",
+    ),
+)
 cam = scene.add_camera(
     res    = (1280, 720),
     pos    = (1.5, 1.5, 0.75),
     lookat = (0, 0, 0.5),
-    fov    = 30,
+    fov    = 60,
     GUI    = False,
 )
 
