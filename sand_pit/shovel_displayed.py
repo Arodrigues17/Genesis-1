@@ -4,7 +4,7 @@ import numpy as np
 gs.init(seed=0, precision="32", backend=gs.cuda)
 
 scene = gs.Scene(
-    show_viewer = False,
+    show_viewer = True,
     viewer_options = gs.options.ViewerOptions(
         res           = (1280, 960),
         camera_pos    = (1.5, 0.0, 1.5),
@@ -27,7 +27,7 @@ plane = scene.add_entity(
     gs.morphs.Plane(),
 )
 franka = scene.add_entity(
-    gs.morphs.MJCF(file='xml/franka_emika_panda/panda_shovel.xml'),
+    gs.morphs.MJCF(file='/home/anthony/dev/Genesis-sim/genesis/assets/xml/franka_emika_panda/panda_shovel.xml'),
 )
 
 cam = scene.add_camera(
@@ -63,8 +63,8 @@ jnt_names = [
 dofs_idx = [franka.get_joint(name).dof_idx_local for name in jnt_names]
 
 # Hard reset
-for i in range(500):
-    if i < 500:
+for i in range(100):
+    if i < 100:
         franka.set_dofs_position(np.array([1, 1, 0, 0, 0, 1, 0]), dofs_idx)
     # elif i < 10000:
     #     franka.set_dofs_position(np.array([-1, 0.8, 1, -2, 1, 0.5, -0.5]), dofs_idx)
